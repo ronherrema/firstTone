@@ -1,15 +1,17 @@
-// const synth = new Tone.Synth().toDestination()
+// const { Tone } = require("tone/build/esm/core/Tone")
 
-// import { Panner3D } from "tone"
-
-// synth.triggerAttackRelease("C4", "8n")
 const notes = ["C2", "C3", "E3", "F3", "G3", "C4", "E4", "D4"]
 
 let synth
 
 let panner
 
-panner = new Tone.Panner3D(-2, 5, -7)
+panner = new Tone.Panner3D({
+  panningModel: "HRTF",
+  positionX: 2,
+  positionY: -5,
+  positionZ: 3,
+})
 
 synth = new Tone.PolySynth({
   volume: -10,
@@ -19,15 +21,13 @@ synth = new Tone.PolySynth({
     sustain: 0.05,
     release: 0,
   },
-})
+}).chain(panner, Tone.Destination)
 
 synth.set({
   oscillator: {
     type: "sine",
   },
 })
-
-synth.chain(panner, Tone.Destination())
 
 var pattern = new Tone.Pattern(
   (time, note) => synth.triggerAttackRelease(note, "16n"),
