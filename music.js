@@ -1,5 +1,3 @@
-// const { Tone } = require("tone/build/esm/core/Tone")
-
 const notes = ["C2", "C3", "E3", "F3", "G3", "C4", "E4", "D4"]
 
 let synth
@@ -11,6 +9,8 @@ panner = new Tone.Panner3D({
   positionX: 2,
   positionY: -5,
   positionZ: 3,
+  // orientationX: -5,
+  // coneInnerAngle: 45,
 })
 
 synth = new Tone.PolySynth({
