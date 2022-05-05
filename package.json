@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "type": "module",
     "tone": "^14.7.77"
   }
 }
